@@ -1,0 +1,43 @@
+---
+title: "Errors"
+description: "Handle OIDC and OAuth error responses"
+icon: "triangle-alert"
+---
+
+OIDC endpoints return standard OAuth 2.0 error codes. Show users a clear message and log enough context for operators to debug the issue.
+
+## Authorization errors
+
+Authorization errors are usually returned to the redirect URI.
+
+```text
+https://app.example.com/callback?error=access_denied&error_description=The+user+denied+the+request&state=STATE
+```
+
+| Error | Meaning |
+| --- | --- |
+| `invalid_request` | The request is missing a required parameter or has an invalid value. |
+| `unauthorized_client` | The client is not allowed to use the requested flow. |
+| `access_denied` | The user or provider denied the request. |
+| `unsupported_response_type` | The response type is not supported. |
+| `invalid_scope` | One or more scopes are invalid or not allowed. |
+| `server_error` | The provider could not complete the request. |
+| `temporarily_unavailable` | The provider is temporarily unavailable. |
+
+## Token endpoint errors
+
+Token errors are returned as JSON with an HTTP error status.
+
+```json
+{
+  "error": "invalid_grant",
+  "error_description": "The authorization code is invalid or expired"
+}
+```
+
+## Troubleshooting
+
+- Confirm `redirect_uri` matches the registered URI exactly.
+- Confirm the authorization code has not expired or been reused.
+- Confirm the app sends the original `code_verifier`.
+- Confirm the client is allowed to request each scope.

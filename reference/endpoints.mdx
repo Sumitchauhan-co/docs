@@ -1,0 +1,82 @@
+---
+title: "Endpoints"
+description: "Reference the main OIDC endpoints"
+icon: "route"
+---
+
+Use discovery as the source of truth for endpoint URLs.
+
+## Authorization endpoint
+
+```text
+GET /oauth2/authorize
+```
+
+Starts user authentication and returns an authorization code to the registered redirect URI.
+
+| Parameter | Required | Description |
+| --- | --- | --- |
+| `response_type` | Yes | Use `code`. |
+| `client_id` | Yes | Registered client ID. |
+| `redirect_uri` | Yes | Registered callback URI. |
+| `scope` | Yes | Include `openid`. |
+| `state` | Yes | CSRF protection value. |
+| `nonce` | Recommended | Replay protection for ID tokens. |
+| `code_challenge` | Yes | PKCE challenge. |
+| `code_challenge_method` | Yes | Use `S256`. |
+
+## Token endpoint
+
+```text
+POST /oauth2/token
+Content-Type: application/x-www-form-urlencoded
+```
+
+Exchanges authorization codes and refresh tokens.
+
+### Authorization code grant
+
+```bash
+curl --request POST https://auth.example.com/oauth2/token \
+  --header "Content-Type: application/x-www-form-urlencoded" \
+  --data "grant_type=authorization_code" \
+  --data "client_id=client_123" \
+  --data "code=AUTHORIZATION_CODE" \
+  --data "redirect_uri=https://app.example.com/callback" \
+  --data "code_verifier=CODE_VERIFIER"
+```
+
+### Refresh token grant
+
+```bash
+curl --request POST https://auth.example.com/oauth2/token \
+  --header "Content-Type: application/x-www-form-urlencoded" \
+  --data "grant_type=refresh_token" \
+  --data "client_id=client_123" \
+  --data "refresh_token=REFRESH_TOKEN"
+```
+
+## Userinfo endpoint
+
+```text
+GET /oauth2/userinfo
+Authorization: Bearer ACCESS_TOKEN
+```
+
+Returns claims for the authenticated user when the access token allows it.
+
+## JWKS endpoint
+
+```text
+GET /.well-known/jwks.json
+```
+
+Returns public signing keys for JWT validation.
+
+## Logout endpoint
+
+```text
+GET /oauth2/logout
+```
+
+Ends the provider session when supported by your deployment.

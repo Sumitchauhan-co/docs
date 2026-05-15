@@ -1,0 +1,29 @@
+---
+title: "Sign in users"
+description: "Authenticate users and create an application session"
+icon: "right-to-bracket"
+---
+
+Use your OIDC library to handle discovery, PKCE, token exchange, and validation when possible.
+
+## Sign-in checklist
+
+1. Load the provider metadata from `/.well-known/openid-configuration`.
+2. Generate `state`, `nonce`, and PKCE values.
+3. Redirect the user to the authorization endpoint.
+4. Confirm the returned `state` matches the original value.
+5. Exchange the authorization code at the token endpoint.
+6. Validate the ID token.
+7. Create your application session.
+
+## Example authorization URL
+
+```text
+https://auth.example.com/oauth2/authorize?response_type=code&client_id=client_123&redirect_uri=https%3A%2F%2Fapp.example.com%2Fcallback&scope=openid%20profile%20email&state=STATE&nonce=NONCE&code_challenge=CODE_CHALLENGE&code_challenge_method=S256
+```
+
+## Session creation
+
+After ID token validation succeeds, create a local session using the `sub` claim as the stable user identifier.
+
+Avoid using email as the primary user key. Email addresses can change.

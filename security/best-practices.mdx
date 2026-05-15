@@ -1,0 +1,36 @@
+---
+title: "Security best practices"
+description: "Protect OIDC clients, sessions, and tokens"
+icon: "shield-halved"
+---
+
+Use these practices for every production integration.
+
+## Client configuration
+
+- Use authorization code with PKCE.
+- Register exact redirect URIs.
+- Use HTTPS for every production redirect URI.
+- Keep client secrets only on trusted servers.
+- Rotate secrets after exposure or team changes.
+
+## Request validation
+
+- Generate unpredictable `state` and `nonce` values.
+- Bind callbacks to the original browser session.
+- Reject callbacks with missing or mismatched `state`.
+- Exchange each authorization code only once.
+
+## Token validation
+
+- Fetch signing keys from the JWKS URI.
+- Cache keys and refresh them when `kid` changes.
+- Validate `iss`, `aud`, `exp`, `iat`, and `nonce`.
+- Reject tokens signed with unexpected algorithms.
+
+## Storage
+
+- Store server sessions in secure, HTTP-only cookies.
+- Store refresh tokens encrypted at rest.
+- Avoid storing access tokens in local storage.
+- Clear tokens on logout and account disconnect.

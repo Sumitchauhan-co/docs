@@ -1,0 +1,30 @@
+---
+title: "OIDC overview"
+description: "Understand the roles and core concepts in OpenID Connect"
+icon: "book-open"
+---
+
+OpenID Connect is an identity layer on top of OAuth 2.0. OAuth 2.0 lets an app access protected resources. OIDC adds a standard way to authenticate users and receive identity claims.
+
+## Roles
+
+- **End user**: The person signing in.
+- **Client**: The application that starts sign-in.
+- **OpenID Provider**: The authorization server that authenticates the user and issues tokens.
+- **Resource server**: The API that accepts access tokens.
+
+## Core artifacts
+
+- **Authorization code**: A short-lived value returned to the redirect URI.
+- **ID token**: A JWT that tells the client who signed in.
+- **Access token**: A token the client sends to APIs.
+- **Refresh token**: A token the client uses to get new access tokens.
+- **JWKS**: A public key set used to verify signed JWTs.
+
+## Recommended flow
+
+Use the authorization code flow with PKCE for browser-based apps, mobile apps, desktop apps, and server-rendered web apps.
+
+<Card title="Authorization code with PKCE" icon="diagram-project" href="/concepts/authorization-code-pkce">
+  See each step in the sign-in redirect and token exchange.
+</Card>

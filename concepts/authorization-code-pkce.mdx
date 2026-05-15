@@ -1,0 +1,43 @@
+---
+title: "Authorization code with PKCE"
+description: "Follow the recommended OIDC sign-in flow"
+icon: "diagram-project"
+---
+
+The authorization code flow with PKCE keeps tokens out of the front-channel redirect and protects the code exchange.
+
+## Flow
+
+<Steps>
+  <Step title="Create request state">
+    Generate `state`, `nonce`, `code_verifier`, and `code_challenge`.
+  </Step>
+  <Step title="Send the authorization request">
+    Redirect the user to `/oauth2/authorize` with `response_type=code`, `scope=openid`, and PKCE parameters.
+  </Step>
+  <Step title="Authenticate the user">
+    The provider authenticates the user and asks for consent when needed.
+  </Step>
+  <Step title="Handle the callback">
+    The provider redirects to your `redirect_uri` with an authorization code.
+  </Step>
+  <Step title="Exchange the code">
+    Your app calls `/oauth2/token` with the code and original `code_verifier`.
+  </Step>
+  <Step title="Validate tokens">
+    Validate the ID token and create your local session.
+  </Step>
+</Steps>
+
+## Required authorization parameters
+
+| Parameter | Description |
+| --- | --- |
+| `response_type` | Use `code`. |
+| `client_id` | Your registered client identifier. |
+| `redirect_uri` | A registered callback URI. |
+| `scope` | Include `openid`. Add `profile`, `email`, or custom scopes as needed. |
+| `state` | A random value that protects against CSRF. |
+| `nonce` | A random value that binds the ID token to the request. |
+| `code_challenge` | The transformed PKCE challenge. |
+| `code_challenge_method` | Use `S256`. |

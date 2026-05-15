@@ -1,0 +1,30 @@
+---
+title: "Scopes and claims"
+description: "Request the identity data your app needs"
+icon: "list-checks"
+---
+
+Scopes describe the access your app requests. Claims are values returned in tokens or from the userinfo endpoint.
+
+## Standard scopes
+
+| Scope | Description |
+| --- | --- |
+| `openid` | Required for every OIDC request. |
+| `profile` | Requests profile claims such as `name` and `picture`. |
+| `email` | Requests `email` and `email_verified`. |
+| `phone` | Requests phone number claims. |
+| `address` | Requests address claims. |
+| `offline_access` | Requests a refresh token when policy allows it. |
+
+## Request only what you need
+
+Ask for the smallest set of scopes that supports the user journey. Smaller requests are easier for users to understand and easier for teams to review.
+
+## Custom scopes
+
+Use custom scopes for product-specific API permissions.
+
+```text
+openid profile email api:read api:write
+```

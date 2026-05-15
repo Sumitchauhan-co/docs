@@ -1,0 +1,49 @@
+---
+title: "Register a client"
+description: "Create an OIDC client for your application"
+icon: "id-card"
+---
+
+Register a client before your app can start an OIDC flow.
+
+## Choose a client type
+
+| Client type | Use for | Authentication |
+| --- | --- | --- |
+| Public | Browser, mobile, desktop, CLI | PKCE |
+| Confidential | Server-rendered web apps and backend services | Client secret or private key |
+
+## Configure redirect URIs
+
+Add every callback URI your app will use.
+
+```text
+https://app.example.com/callback
+https://app.example.com/auth/oidc/callback
+http://localhost:3000/callback
+```
+
+The `redirect_uri` parameter must match one registered URI exactly.
+
+## Configure logout URIs
+
+Add post-logout redirect URIs if your app sends users back after logout.
+
+```text
+https://app.example.com/signed-out
+http://localhost:3000/signed-out
+```
+
+## Save client settings
+
+Store these values in your app configuration:
+
+```bash
+OIDC_ISSUER=https://auth.example.com
+OIDC_CLIENT_ID=client_123
+OIDC_CLIENT_SECRET=replace-me
+```
+
+<Tip>
+  Public clients do not keep secrets. Use PKCE and exact redirect URI matching instead.
+</Tip>

@@ -1,0 +1,37 @@
+---
+title: "Discovery"
+description: "Find OIDC provider metadata"
+icon: "compass"
+---
+
+OIDC discovery publishes provider settings at a standard URL.
+
+```text
+GET https://auth.example.com/.well-known/openid-configuration
+```
+
+## Important fields
+
+| Field | Description |
+| --- | --- |
+| `issuer` | Identifier that appears in issued tokens. |
+| `authorization_endpoint` | Endpoint that starts sign-in. |
+| `token_endpoint` | Endpoint that exchanges codes and refresh tokens. |
+| `userinfo_endpoint` | Endpoint that returns user claims. |
+| `jwks_uri` | Endpoint that returns signing keys. |
+| `end_session_endpoint` | Endpoint that starts provider logout. |
+| `scopes_supported` | Scopes the provider advertises. |
+| `claims_supported` | Claims the provider advertises. |
+
+## Example response
+
+```json
+{
+  "issuer": "https://auth.example.com",
+  "authorization_endpoint": "https://auth.example.com/oauth2/authorize",
+  "token_endpoint": "https://auth.example.com/oauth2/token",
+  "userinfo_endpoint": "https://auth.example.com/oauth2/userinfo",
+  "jwks_uri": "https://auth.example.com/.well-known/jwks.json",
+  "end_session_endpoint": "https://auth.example.com/oauth2/logout"
+}
+```

@@ -1,0 +1,29 @@
+---
+title: "Logout"
+description: "End the local session and redirect through provider logout"
+icon: "right-from-bracket"
+---
+
+Logout usually has two parts:
+
+- Clear the local application session.
+- Redirect the user to the provider logout endpoint when you want to end the provider session.
+
+## End the local session
+
+Clear your app cookie, server-side session, cached user data, and stored tokens.
+
+## Redirect to provider logout
+
+```text
+https://auth.example.com/oauth2/logout?
+  id_token_hint=ID_TOKEN&
+  post_logout_redirect_uri=https%3A%2F%2Fapp.example.com%2Fsigned-out&
+  state=LOGOUT_STATE
+```
+
+Validate the returned `state` after the provider redirects back to your app.
+
+## Token revocation
+
+Revoke refresh tokens when a user signs out of a device or disconnects an app.

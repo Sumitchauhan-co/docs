@@ -1,0 +1,36 @@
+---
+title: "Tokens"
+description: "Use ID tokens, access tokens, and refresh tokens correctly"
+icon: "key"
+---
+
+OIDC integrations usually receive more than one token. Each token has a different audience and purpose.
+
+## ID tokens
+
+An ID token represents the authentication event. Your client validates it and uses its claims to create an application session.
+
+Common claims include:
+
+| Claim | Meaning |
+| --- | --- |
+| `iss` | Issuer that created the token. |
+| `sub` | Stable subject identifier for the user. |
+| `aud` | Client ID that the token is intended for. |
+| `exp` | Expiration time. |
+| `iat` | Time the token was issued. |
+| `nonce` | Value from the authorization request. |
+
+Do not send ID tokens to APIs as proof of authorization.
+
+## Access tokens
+
+An access token authorizes API access. APIs should validate the token and enforce scopes, permissions, and audience.
+
+## Refresh tokens
+
+A refresh token lets a client request new access tokens without sending the user through sign-in again. Store refresh tokens with the same care as passwords.
+
+<Warning>
+  Treat every refresh token as a long-lived credential. Rotate it when your provider supports rotation.
+</Warning>
