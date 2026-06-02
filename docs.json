@@ -3,11 +3,11 @@
     "theme": "mint",
     "name": "OIDC Project",
     "colors": {
-        "primary": "#2563EB",
-        "light": "#38BDF8",
-        "dark": "#1D4ED8"
+        "primary": "#000000",
+        "light": "#FFFFFF",
+        "dark": "#000000"
     },
-    "favicon": "/favicon.svg",
+    "favicon": "/favicon.ico",
     "navigation": {
         "tabs": [
             {
@@ -64,13 +64,14 @@
         "links": [
             {
                 "label": "Support",
-                "href": "mailto:support@example.com"
+                "href": "mailto:sumit.chauhan.code@gmail.com"
             }
         ],
         "primary": {
             "type": "button",
             "label": "Dashboard",
-            "href": "https://example.com/dashboard"
+            "href": "https://example.com/dashboard",
+            "color": "black"
         }
     },
     "search": {
@@ -96,7 +97,7 @@
     },
     "footer": {
         "socials": {
-            "github": "https://github.com/example/oidc-project"
+            "github": "https://github.com/Sumitchauhan-co"
         }
     }
 }

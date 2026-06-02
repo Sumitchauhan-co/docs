@@ -1,24 +1,40 @@
 ---
-title: "Introduction"
-description: "Build secure sign-in with OpenID Connect"
-icon: "shield-check"
+title: 'Introduction'
+description: 'Build secure sign-in with OpenID Connect'
+icon: 'shield-check'
 ---
 
 OIDC Project helps applications authenticate users with OpenID Connect. Use these docs to register clients, send users through the authorization code flow, validate tokens, refresh sessions, and sign users out safely.
 
 <CardGroup cols={2}>
-  <Card title="Start with the quickstart" icon="rocket" href="/quickstart">
-    Configure your first OIDC client and complete a sign-in flow.
-  </Card>
-  <Card title="Learn the protocol" icon="book-open" href="/concepts/oidc-overview">
-    Understand how OpenID Connect extends OAuth 2.0.
-  </Card>
-  <Card title="Register a client" icon="id-card" href="/guides/register-client">
-    Create an application, set redirect URIs, and choose a client type.
-  </Card>
-  <Card title="Use endpoint reference" icon="terminal" href="/reference/endpoints">
-    Find request parameters, token responses, and common errors.
-  </Card>
+    <Card
+        title="Start with the quickstart"
+        icon="rocket"
+        href="/quickstart"
+    >
+        Configure your first OIDC client and complete a sign-in flow.
+    </Card>
+    <Card
+        title="Learn the protocol"
+        icon="book-open"
+        href="/concepts/oidc-overview"
+    >
+        Understand how OpenID Connect extends OAuth 2.0.
+    </Card>
+    <Card
+        title="Register a client"
+        icon="id-card"
+        href="/guides/register-client"
+    >
+        Create an application, set redirect URIs, and choose a client type.
+    </Card>
+    <Card
+        title="Use endpoint reference"
+        icon="terminal"
+        href="/reference/endpoints"
+    >
+        Find request parameters, token responses, and common errors.
+    </Card>
 </CardGroup>
 
 ## What you can build
@@ -37,7 +53,3 @@ Replace the placeholder issuer with your deployment URL.
 Issuer: https://auth.example.com
 Discovery: https://auth.example.com/.well-known/openid-configuration
 ```
-
-<Note>
-  Update `docs.json`, this page, and the endpoint examples with your real issuer, dashboard URL, support address, and repository link.
-</Note>
