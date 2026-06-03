@@ -18,21 +18,11 @@ Register a client before your app can start an OIDC flow.
 Add every callback URI your app will use.
 
 ```text
-https://app.example.com/callback
-https://app.example.com/auth/oidc/callback
-http://localhost:3000/callback
+https://app.example.com
+http://localhost:5173
 ```
 
 The `redirect_uri` parameter must match one registered URI exactly.
-
-## Configure logout URIs
-
-Add post-logout redirect URIs if your app sends users back after logout.
-
-```text
-https://app.example.com/signed-out
-http://localhost:3000/signed-out
-```
 
 ## Save client settings
 

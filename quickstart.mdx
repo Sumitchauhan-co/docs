@@ -6,10 +6,6 @@ icon: "rocket"
 
 This quickstart shows the standard OIDC sign-in flow for public clients and confidential web apps.
 
-<Info>
-  Replace `https://auth.example.com`, `client_123`, and redirect URIs with values from your OIDC project.
-</Info>
-
 ## Prerequisites
 
 - An OIDC client registered in your dashboard.
@@ -22,7 +18,7 @@ This quickstart shows the standard OIDC sign-in flow for public clients and conf
 Fetch the discovery document to find the authorization, token, userinfo, JWKS, and logout endpoints.
 
 ```bash
-curl https://auth.example.com/.well-known/openid-configuration
+curl https://protoauth.vercel.app/.well-known/openid-configuration
 ```
 
 Use the `issuer` value from discovery when you validate tokens. The value must match exactly.
@@ -48,7 +44,7 @@ Store `codeVerifier` server-side or in protected client storage until the callba
 ## 3. Redirect the user to authorize
 
 ```text
-GET https://auth.example.com/oauth2/authorize?
+GET https://protoauth.vercel.app/o/authenticate?
   response_type=code&
   client_id=client_123&
   redirect_uri=https%3A%2F%2Fapp.example.com%2Fcallback&
@@ -66,7 +62,7 @@ Use `state` to protect the redirect. Use `nonce` to bind the ID token to the sig
 After authentication, the provider redirects back to your app with `code` and `state`.
 
 ```bash
-curl --request POST https://auth.example.com/oauth2/token \
+curl --request POST https://protoauth.vercel.app/o/token \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data "grant_type=authorization_code" \
   --data "client_id=client_123" \
@@ -93,6 +89,7 @@ Validate the ID token before you create a local session.
   <Card title="Register a client" icon="id-card" href="/guides/register-client">
     Configure redirect URIs, client type, and token settings.
   </Card>
+
   <Card title="Review token validation" icon="key" href="/concepts/tokens">
     Learn how ID tokens, access tokens, and refresh tokens work.
   </Card>

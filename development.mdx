@@ -11,9 +11,8 @@ Use local development settings that match production behavior without weakening 
 Register explicit local callback URLs for each app you run.
 
 ```text
-http://localhost:3000/callback
-http://127.0.0.1:3000/callback
-http://localhost:5173/auth/callback
+https://app.example.com
+http://localhost:5173
 ```
 
 Do not use wildcard redirect URIs unless your deployment explicitly supports a safe, narrow pattern.
@@ -30,7 +29,7 @@ Store OIDC settings outside your source code.
 OIDC_ISSUER=https://auth.example.com
 OIDC_CLIENT_ID=client_123
 OIDC_CLIENT_SECRET=replace-me
-OIDC_REDIRECT_URI=http://localhost:3000/callback
+OIDC_REDIRECT_URI=http://localhost:5173
 ```
 
 Never commit client secrets, refresh tokens, authorization codes, or private keys.

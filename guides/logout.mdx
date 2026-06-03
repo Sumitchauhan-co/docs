@@ -1,5 +1,5 @@
 ---
-title: "Logout"
+title: "Signout"
 description: "End the local session and redirect through provider logout"
 icon: "right-from-bracket"
 ---
@@ -16,10 +16,9 @@ Clear your app cookie, server-side session, cached user data, and stored tokens.
 ## Redirect to provider logout
 
 ```text
-https://auth.example.com/oauth2/logout?
+https://protoauth.vercel.app/o/signout?
   id_token_hint=ID_TOKEN&
-  post_logout_redirect_uri=https%3A%2F%2Fapp.example.com%2Fsigned-out&
-  state=LOGOUT_STATE
+  redirect_uri=https%3A%2F%2Fapp.example.com%2Fsigned-out&
 ```
 
 Validate the returned `state` after the provider redirects back to your app.

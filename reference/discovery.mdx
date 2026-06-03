@@ -7,7 +7,7 @@ icon: "compass"
 OIDC discovery publishes provider settings at a standard URL.
 
 ```text
-GET https://auth.example.com/.well-known/openid-configuration
+GET https://oidcproject-production.up.railway.app/.well-known/openid-configuration
 ```
 
 ## Important fields
@@ -27,11 +27,10 @@ GET https://auth.example.com/.well-known/openid-configuration
 
 ```json
 {
-  "issuer": "https://auth.example.com",
-  "authorization_endpoint": "https://auth.example.com/oauth2/authorize",
-  "token_endpoint": "https://auth.example.com/oauth2/token",
-  "userinfo_endpoint": "https://auth.example.com/oauth2/userinfo",
-  "jwks_uri": "https://auth.example.com/.well-known/jwks.json",
-  "end_session_endpoint": "https://auth.example.com/oauth2/logout"
+  "issuer": "https://oidcproject-production.up.railway.app",
+  "authorization_endpoint": "https://oidcproject-production.up.railway.app/o/authenticate",
+  "userinfo_endpoint": "https://oidcproject-production.up.railway.app/o/userinfo",
+  "jwks_uri": "https://oidcproject-production.up.railway.app/.well-known/jwks.json",
+  "token_endpoint": "https://oidcproject-production.up.railway.app/o/token"
 }
 ```
