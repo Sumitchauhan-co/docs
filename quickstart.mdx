@@ -17,8 +17,8 @@ This quickstart shows the standard OIDC sign-in flow for public clients and conf
 
 Fetch the discovery document to find the authorization, token, userinfo, JWKS, and logout endpoints.
 
-```bash
-curl https://protoauth.vercel.app/.well-known/openid-configuration
+```shellscript
+curl http://protoauth.vercel.app/.well-known/openid-configuration
 ```
 
 Use the `issuer` value from discovery when you validate tokens. The value must match exactly.
@@ -28,15 +28,26 @@ Use the `issuer` value from discovery when you validate tokens. The value must m
 Generate a high-entropy `code_verifier`. Send its SHA-256 challenge in the authorization request.
 
 ```js
-const codeVerifier = crypto.randomUUID() + crypto.randomUUID();
-const digest = await crypto.subtle.digest(
-  "SHA-256",
-  new TextEncoder().encode(codeVerifier)
-);
-const codeChallenge = btoa(String.fromCharCode(...new Uint8Array(digest)))
-  .replace(/\+/g, "-")
-  .replace(/\//g, "_")
-  .replace(/=+$/, "");
+function generateCodeVerifier() {
+  const array = new Uint8Array(56);
+  window.crypto.getRandomValues(array);
+  return Array.from(array, dec => ('0' + dec.toString(16)).slice(-2)).join('');
+}
+
+async function generateCodeChallenge(verifier) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(verifier);
+  const digest = await window.crypto.subtle.digest("SHA-256", data);
+  
+  return btoa(String.fromCharCode(...new Uint8Array(digest)))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+
+const codeVerifier = generateCodeVerifier();
+const codeChallenge = await generateCodeChallenge(codeVerifier);
+const codeChallengeMethod = "S256";
 ```
 
 Store `codeVerifier` server-side or in protected client storage until the callback completes.

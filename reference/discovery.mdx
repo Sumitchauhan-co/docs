@@ -7,7 +7,7 @@ icon: "compass"
 OIDC discovery publishes provider settings at a standard URL.
 
 ```text
-GET https://oidcproject-production.up.railway.app/.well-known/openid-configuration
+GET https://protoauth.onrender.com/.well-known/openid-configuration
 ```
 
 ## Important fields
@@ -27,10 +27,33 @@ GET https://oidcproject-production.up.railway.app/.well-known/openid-configurati
 
 ```json
 {
-  "issuer": "https://oidcproject-production.up.railway.app",
-  "authorization_endpoint": "https://oidcproject-production.up.railway.app/o/authenticate",
-  "userinfo_endpoint": "https://oidcproject-production.up.railway.app/o/userinfo",
-  "jwks_uri": "https://oidcproject-production.up.railway.app/.well-known/jwks.json",
-  "token_endpoint": "https://oidcproject-production.up.railway.app/o/token"
+	"issuer": "https://protoauth.onrender.com",
+	"authorization_endpoint": "https://protoauth.onrender.com/o/authenticate",
+	"token_endpoint": "https://protoauth.onrender.com/o/token",
+	"userinfo_endpoint": "https://protoauth.onrender.com/o/userinfo",
+	"revocation_endpoint": "https://protoauth.onrender.com/o/revoke",
+	"jwks_uri": "https://protoauth.onrender.com/.well-known/jwks.json",
+	"scopes_supported": [
+		"openid",
+		"profile",
+		"email"
+	],
+	"response_types_supported": [
+		"code"
+	],
+	"id_token_signing_alg_values_supported": [
+		"RS256"
+	],
+	"claims_supported": [
+		"iss",
+		"sub",
+		"aud",
+		"exp",
+		"iat",
+		"name",
+		"given_name",
+		"family_name",
+		"email"
+	]
 }
 ```

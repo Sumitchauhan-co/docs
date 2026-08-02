@@ -9,7 +9,7 @@ Use discovery as the source of truth for endpoint URLs.
 ## Authorization endpoint
 
 ```text
-GET https://oidcproject-production.up.railway.app/o/authenticate
+GET https://protoauth.onrender.com/o/authenticate
 ```
 
 Starts user authentication and returns an authorization code to the registered redirect URI.
@@ -37,7 +37,7 @@ Exchanges authorization codes and refresh tokens.
 ### Authorization code grant
 
 ```bash
-curl --request POST https://oidcproject-production.up.railway.app/o/token \
+curl --request POST https://protoauth.onrender.com/o/token \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data "grant_type=authorization_code" \
   --data "client_id=client_123" \
@@ -49,7 +49,7 @@ curl --request POST https://oidcproject-production.up.railway.app/o/token \
 ### Refresh token grant
 
 ```bash
-curl --request POST https://oidcproject-production.up.railway.app/o/token \
+curl --request POST https://protoauth.onrender.com/o/token \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --data "grant_type=refresh_token" \
   --data "client_id=client_123" \
@@ -59,7 +59,7 @@ curl --request POST https://oidcproject-production.up.railway.app/o/token \
 ## Userinfo endpoint
 
 ```text
-GET https://oidcproject-production.up.railway.app/o/userinfo
+GET https://protoauth.onrender.com/o/userinfo
 Authorization: Bearer ACCESS_TOKEN
 ```
 
@@ -68,7 +68,7 @@ Returns claims for the authenticated user when the access token allows it.
 ## JWKS endpoint
 
 ```text
-GET https://oidcproject-production.up.railway.app/jwks.json
+GET https://protoauth.onrender.com/jwks.json
 ```
 
 Returns public signing keys for JWT validation.
@@ -76,7 +76,7 @@ Returns public signing keys for JWT validation.
 ## Signout endpoint
 
 ```text
-GET https://oidcproject-production.up.railway.app/o/authenticate/signout
+GET https://protoauth.onrender.com/o/authenticate/signout
 ```
 
 Ends the provider session when supported by your deployment.

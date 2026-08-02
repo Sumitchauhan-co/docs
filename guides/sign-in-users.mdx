@@ -19,7 +19,14 @@ Use your OIDC library to handle discovery, PKCE, token exchange, and validation 
 ## Example authorization URL
 
 ```text
-https://protoauth.vercel.app/o/authenticate?client_id=client_123&redirect_uri=https%3A%2F%2Fapp.example.com%2Fcallback&state=STATE
+https://protoauth.vercel.app/o/authenticate?
+	client_id=client_123&
+	redirect_uri=https%3A%2F%2Fapp.example.com%2Fcallback&
+	scope=openid%20profile%20email&
+	state=af0ifjsldkj&
+	nonce=n-0S6_WzA2Mj&
+	code_challenge=CODE_CHALLENGE&
+	code_challenge_method=S256
 ```
 
 ## Session creation
